@@ -13,7 +13,7 @@ import java.util.UUID;
 public class UserRepository {
 
         public  List<User> userData () {
-            String sql = "SELECT * FROM school";
+            String sql = "SELECT * FROM users";
             List<User> users = new ArrayList<>();
             LoadProperties.loadProperties();
             try (
@@ -43,7 +43,7 @@ public class UserRepository {
         }
         public User insertUser (User user){
             LoadProperties.loadProperties();
-           String sql = "INSERT INTO school (user_uuid, user_name, user_email, user_password, is_deleted, is_verified) VALUES (?, ?, ?, ?, ?, ?)";
+           String sql = "INSERT INTO users (user_uuid, user_name, user_email, user_password, is_deleted, is_verified) VALUES (?, ?, ?, ?, ?, ?)";
             try (
                     Connection connection = DriverManager.getConnection(
                             LoadProperties.properties.getProperty("database_URL"),
@@ -77,7 +77,7 @@ public class UserRepository {
             return new User();
         }
         public Integer deleteById (Integer id) {
-            String sql = "DELETE FROM school WHERE user_id = ?";
+            String sql = "DELETE FROM users WHERE user_id = ?";
             try (
                     Connection connection = DriverManager.getConnection(
                             LoadProperties.properties.getProperty("database_URL"),
@@ -94,7 +94,7 @@ public class UserRepository {
         }
         public User updateUser (User user)  {
             LoadProperties.loadProperties();
-            String sql = "update school SET user_uuid = ?,  user_name = ?, user_email = ? , user_password = ?, is_deleted = ?, is_verified = ? where user_id = ?";
+            String sql = "update users SET user_uuid = ?,  user_name = ?, user_email = ? , user_password = ?, is_deleted = ?, is_verified = ? where user_id = ?";
             try (
                     Connection connection = DriverManager.getConnection(
                             LoadProperties.properties.getProperty("database_URL"),
